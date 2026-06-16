@@ -1,0 +1,57 @@
+events {}
+
+http {
+    upstream apache_backend {
+        server apache:80;
+    }
+    
+    upstream tracker_backend {
+	    server tracker-app:5000;
+    }
+
+    # Redirect HTTP -> HTTPS
+    server {
+        listen 80;
+        server_name jefffolio.com www.jefffolio.com;
+        return 301 https://$host$request_uri;
+    }
+    
+    server {
+         listen 80;
+         server_name tracker.jefffolio.com;
+         return 301 https://$host$request_uri;
+    }
+
+    #  Resume Site
+    server {
+        listen 443 ssl;
+        server_name jefffolio.com www.jefffolio.com;
+
+        ssl_certificate /etc/nginx/ssl/fullchain.pem;
+        ssl_certificate_key /etc/nginx/ssl/privkey.pem;
+
+        location / {
+            proxy_pass http://apache_backend;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+    }
+    
+    # Tracker Site
+    server {
+        listen 443 ssl;
+        server_name tracker.jefffolio.com;
+    
+        ssl_certificate /etc/nginx/ssl/fullchain.pem;
+        ssl_certificate_key /etc/nginx/ssl/privkey.pem;
+    
+        location / {
+    
+            proxy_pass http://tracker-app:5000;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+        }
+    }
+}

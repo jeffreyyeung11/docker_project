@@ -1,0 +1,24 @@
+# Environment variables
+.env
+
+# Application configuration
+main-site/resume-site/includes/config.php
+
+# Backups
+backup/
+
+# Docker persistent data
+db_data/
+grafana_data/
+prometheus_data/
+
+# Logs
+*.log
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db

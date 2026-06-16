@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calorie Tracker</title>
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Calorie Lookup</h1>
+
+  <p class="subtitle">
+    Search foods and view calories, macros, and nutritional information
+  </p>
+
+  <div class="search-container">
+
+  <div class="autocomplete-container">
+
+    <input
+      type="text"
+      id="foodInput"
+      placeholder="Search food..."
+      autocomplete="off"
+    >
+
+    <div id="autocomplete-results"></div>
+
+  </div>
+
+  <select id="servingSize">
+
+    <option value="1">1 Serving</option>
+    <option value="0.5">0.5 Serving</option>
+    <option value="2">2 Servings</option>
+
+  </select>
+
+  <button onclick="searchFood()">
+    Search
+  </button>
+
+</div>
+
+  <div id="results"></div>
+
+</div>
+
+<script>
+
+const foodInput =
+  document.getElementById("foodInput");
+
+const autocompleteResults =
+  document.getElementById("autocomplete-results");
+
+// close dropdown when clicking outside (RUN ONCE ONLY)
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".autocomplete-container")) {
+    autocompleteResults.innerHTML = "";
+  }
+});
+
+let debounceTimer;
+
+foodInput.addEventListener("input", async () => {
+
+  const query = foodInput.value;
+
+  if (query.trim().length < 2) {
+    autocompleteResults.innerHTML = "";
+    return;
+  }
+
+  clearTimeout(debounceTimer);
+
+  debounceTimer = setTimeout(async () => {
+
+    const response =
+      await fetch(`/api/autocomplete?query=${encodeURIComponent(query)}`);
+
+    const foods = await response.json();
+
+    autocompleteResults.innerHTML = "";
+
+    if (!foods.length) return;
+
+    foods.forEach(food => {
+
+      const div = document.createElement("div");
+
+      div.classList.add("autocomplete-item");
+
+      div.textContent = food.name;
+
+      div.onclick = () => {
+
+        foodInput.value = food.name;
+
+        autocompleteResults.innerHTML = "";
+      };
+
+      autocompleteResults.appendChild(div);
+    });
+
+  }, 250);
+});
+
+async function searchFood() {
+
+  const food = document.getElementById("foodInput").value;
+
+  const results = document.getElementById("results");
+  
+  const servingMultiplier =
+    parseFloat(document.getElementById("servingSize").value);
+
+  if (!food) {
+    results.innerHTML =
+      '<p class="error">Please enter a food item.</p>';
+    return;
+  }
+
+  results.innerHTML =
+    '<p class="loading">Searching nutrition database...</p>';
+
+  try {
+
+    const response =
+      await fetch(`/api/search?food=${encodeURIComponent(food)}`);
+
+    const data = await response.json();
+
+    console.log(data);
+
+    /*
+      Example expected API structure:
+
+      {
+        "name": "Chicken Breast",
+        "calories": 165,
+        "protein": 31,
+        "carbs": 0,
+        "fat": 3.6
+      }
+    */
+
+    results.innerHTML = `
+
+      <div class="food-card">
+
+        <h2>${data.name || food}</h2>
+
+        <div class="nutrition-grid">
+
+          <div class="nutrition-item">
+            <label>Calories</label>
+            <span>${(data.calories * servingMultiplier).toFixed(1)} kcal</span>
+          </div>
+
+          <div class="nutrition-item">
+            <label>Protein</label>
+            <span>${(data.protein * servingMultiplier).toFixed(1)}g</span>
+          </div>
+
+          <div class="nutrition-item">
+            <label>Carbohydrates</label>
+            <span>${(data.carbs * servingMultiplier).toFixed(1)}g</span>
+          </div>
+
+          <div class="nutrition-item">
+            <label>Fat</label>
+            <span>${(data.fat * servingMultiplier).toFixed(1)}g</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    `;
+
+  } catch (error) {
+
+    console.error(error);
+
+    results.innerHTML =
+      '<p class="error">Error retrieving nutrition data.</p>';
+  }
+}
+
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".autocomplete-container")) {
+    autocompleteResults.innerHTML = "";
+  }
+});
+
+</script>
+
+</body>
+</html>

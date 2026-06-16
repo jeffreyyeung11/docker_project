@@ -1,0 +1,98 @@
+ :root {
+      --accent: #2563eb;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --bg: #f9fafb;
+      --card: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem 1.25rem;
+    }
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .contact a {
+      color: var(--accent);
+      text-decoration: none;
+      margin-right: 0.75rem;
+    }
+    section {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 1.25rem;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+      padding-bottom: 0.2rem;
+    }
+    .item {
+      margin-bottom: 1rem;
+    }
+    .item:last-child {
+      margin-bottom: 0;
+    }
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+    }
+    .role {
+      font-weight: 600;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    ul {
+      margin: 0.4rem 0 0.6rem 1.2rem;
+    }
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+    .skill {
+      background: #eef2ff;
+      color: #3730a3;
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6rem; }
+    }

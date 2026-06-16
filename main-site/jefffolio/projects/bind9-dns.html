@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bind9 DNS Server Project | Jefffolio</title>
+    <link rel="stylesheet" href="../style.css?v=2">
+</head>
+
+<body>
+
+<header>
+  <nav class="navbar">
+    <h1 class="logo">Jeffrey Yeung</h1>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+     <!-- <li><a href="../index.html#docs">Documentation</a></li>-->
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="project-page">
+
+    <section class="project-hero">
+        <h1>Bind9 DNS Server</h1>
+
+        <p>
+            Designed and deployed a self-hosted DNS infrastructure using Bind9
+            on Ubuntu Linux to provide authoritative DNS services for custom
+            domains. This project demonstrates DNS administration, zone
+            management, record configuration, and network troubleshooting
+            commonly used in enterprise environments.
+        </p>
+    </section>
+
+    <section class="project-section">
+        <h2>Project Overview</h2>
+
+        <p>
+            Deployed and administered a Bind9 DNS environment to provide
+            authoritative name resolution for self-hosted services and lab
+            infrastructure. Configured DNS zones, A, CNAME, MX, TXT, SPF, DKIM,
+            and DMARC records while validating DNS propagation, troubleshooting
+            resolution issues, and implementing security best practices to improve
+            reliability and service availability.
+        </p>
+    </section>
+
+    <section class="project-section">
+        <h2>DNS Architecture</h2>
+
+        <pre class="diagram">
+Internet
+    │
+    ▼
+Registrar
+    │
+    ▼
+Bind9 DNS Server
+    │
+    ├── A Records
+    ├── MX Records
+    ├── TXT Records
+    ├── SPF
+    ├── DKIM
+    ├── DMARC
+    └── Subdomains
+            │
+            ├── jefffolio.com
+            ├── tracker.jefffolio.com
+            ├── grafana.jefffolio.com
+            └── prometheus.jefffolio.com
+         </pre>
+
+    </section>
+
+
+    <section class="project-section">
+        <h2>Environment</h2>
+
+        <table>
+            <tr>
+                <th>Component</th>
+                <th>Details</th>
+            </tr>
+
+            <tr>
+                <td>Operating System</td>
+                <td>Ubuntu Server 24.04 LTS</td>
+            </tr>
+
+            <tr>
+                <td>DNS Software</td>
+                <td>Bind9</td>
+            </tr>
+
+            <tr>
+                <td>Hosting Platform</td>
+                <td>Virtual Private Server (VPS)</td>
+            </tr>
+
+            <tr>
+                <td>Domain</td>
+                <td>jefffolio.com</td>
+            </tr>
+
+            <tr>
+                <td>Mail Provider</td>
+                <td>IONOS Mail Services</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="project-section">
+        <h2>Zone Configuration</h2>
+
+        <p>
+            Created authoritative forward lookup zones within Bind9 and
+            maintained DNS records through manual zone file management.
+        </p>
+
+<pre>
+zone "jefffolio.com" {
+    type master;
+    file "/etc/bind/zones/db.jefffolio.com";
+};
+</pre>
+
+        <p>
+            Zone files were updated and incremented using proper serial
+            numbering to ensure DNS changes propagated correctly.
+        </p>
+    </section>
+
+    <section class="project-section">
+        <h2>DNS Records Configured</h2>
+
+        <table>
+            <tr>
+                <th>Record Type</th>
+                <th>Purpose</th>
+            </tr>
+
+            <tr>
+                <td>A</td>
+                <td>Mapped domains to server IP addresses.</td>
+            </tr>
+
+            <tr>
+                <td>CNAME</td>
+                <td>Created aliases for subdomains.</td>
+            </tr>
+
+            <tr>
+                <td>MX</td>
+                <td>Directed mail traffic to IONOS mail servers.</td>
+            </tr>
+
+            <tr>
+                <td>TXT</td>
+                <td>Domain verification and email authentication.</td>
+            </tr>
+
+            <tr>
+                <td>SPF</td>
+                <td>Defined authorized mail senders.</td>
+            </tr>
+
+            <tr>
+                <td>DKIM</td>
+                <td>Validated message authenticity.</td>
+            </tr>
+
+            <tr>
+                <td>DMARC</td>
+                <td>Provided email spoofing protection.</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="project-section">
+        <h2>Security Measures</h2>
+
+        <ul>
+            <li>Restricted zone modifications to administrative access only.</li>
+            <li>Implemented SPF, DKIM, and DMARC records.</li>
+            <li>Performed regular validation using DNS diagnostic tools.</li>
+            <li>Maintained backups of DNS configuration files.</li>
+            <li>Limited exposed services through firewall rules.</li>
+            <li>Monitored DNS functionality through system logs.</li>
+        </ul>
+    </section>
+
+    <section class="project-section">
+        <h2>Testing & Validation</h2>
+
+        <p>
+            DNS records were validated using industry-standard tools to ensure
+            proper resolution and mail delivery.
+        </p>
+
+<pre>
+dig jefffolio.com
+
+dig MX jefffolio.com
+
+dig TXT jefffolio.com
+
+nslookup tracker.jefffolio.com
+</pre>
+
+        <p>
+            DNS responses were verified after each zone update to confirm
+            successful propagation and record accuracy.
+        </p>
+    </section>
+
+    <section class="project-section">
+        <h2>Challenges Encountered</h2>
+
+        <ul>
+            <li>Managing DNS zone serial numbers correctly.</li>
+            <li>Troubleshooting propagation delays.</li>
+            <li>Validating mail authentication records.</li>
+            <li>Configuring multiple service subdomains.</li>
+            <li>Understanding authoritative DNS server behavior.</li>
+        </ul>
+    </section>
+
+    <section class="project-section">
+        <h2>Skills Demonstrated</h2>
+
+        <ul>
+            <li>Linux Server Administration</li>
+            <li>DNS Administration</li>
+            <li>Bind9 Configuration</li>
+            <li>TCP/IP Networking</li>
+            <li>Email Authentication (SPF, DKIM, DMARC)</li>
+            <li>System Troubleshooting</li>
+            <li>Network Services Management</li>
+            <li>Infrastructure Documentation</li>
+        </ul>
+    </section>
+
+    <section class="project-section">
+        <h2>Lessons Learned</h2>
+
+        <p>
+            This project strengthened my understanding of DNS architecture,
+            domain resolution, email authentication, and infrastructure
+            management. Working directly with Bind9 provided hands-on
+            experience administering one of the most widely used DNS platforms
+            in enterprise environments while improving troubleshooting and
+            documentation skills.
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 Jefffolio. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

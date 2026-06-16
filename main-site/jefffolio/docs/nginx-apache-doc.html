@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nginx & Apache Documentation</title>
+    <link rel="stylesheet" href="../style.css?v=3">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <h1 class="logo">Jeffrey Yeung</h1>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html#projects">Projects</a></li>
+            <li><a href="../index.html#docs">Documentation</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="doc-page">
+
+    <section class="doc-header">
+        <h1>Nginx & Apache Documentation</h1>
+        <p>
+            Documentation covering the deployment and configuration
+            of the Nginx reverse proxy and Apache web server.
+        </p>
+    </section>
+
+    <section class="doc-section">
+        <h2>Overview</h2>
+
+        <p>
+            Nginx is used as the public-facing reverse proxy while
+            Apache hosts the application content internally.
+        </p>
+    </section>
+
+    <section class="doc-section">
+        <h2>Purpose</h2>
+
+        <ul>
+            <li>Centralized SSL termination</li>
+            <li>Reverse proxy routing</li>
+            <li>Host multiple services</li>
+            <li>Hide internal containers</li>
+            <li>Improve security posture</li>
+        </ul>
+    </section>
+
+    <section class="doc-section">
+        <h2>Architecture</h2>
+
+        <pre class="diagram">
+Internet
+    |
+Nginx Reverse Proxy
+    |
+Apache Container
+        </pre>
+    </section>
+
+    <section class="doc-section">
+        <h2>Installation Steps</h2>
+
+        <ol>
+            <li>Install Docker and Docker Compose</li>
+            <li>Create Docker network</li>
+            <li>Deploy Apache container</li>
+            <li>Deploy Nginx container</li>
+            <li>Configure reverse proxy rules</li>
+            <li>Configure SSL certificates</li>
+        </ol>
+    </section>
+
+    <section class="doc-section">
+        <h2>Configuration Examples</h2>
+
+<pre class="code-block">
+upstream apache_backend {
+    server apache:80;
+}
+
+location / {
+    proxy_pass http://apache_backend;
+}
+</pre>
+
+    </section>
+
+    <section class="doc-section">
+        <h2>Screenshots</h2>
+
+        <div class="screenshot-grid">
+            <figure>
+                <img src="../images/nginx-config.png" alt="">
+                <figcaption>Nginx configuration</figcaption>
+            </figure>
+
+            <figure>
+                <img src="../images/apache-container.png" alt="">
+                <figcaption>Apache container status</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <section class="doc-section">
+        <h2>Troubleshooting</h2>
+
+        <table class="troubleshooting-table">
+            <tr>
+                <th>Issue</th>
+                <th>Resolution</th>
+            </tr>
+
+            <tr>
+                <td>502 Bad Gateway</td>
+                <td>Verify upstream service is running.</td>
+            </tr>
+
+            <tr>
+                <td>403 Forbidden</td>
+                <td>Verify Apache Directory permissions.</td>
+            </tr>
+        </table>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 Jeffrey Yeung</p>
+</footer>
+
+</body>
+</html>

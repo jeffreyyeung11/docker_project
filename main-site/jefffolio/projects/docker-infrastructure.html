@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Docker Infrastructure Project | Jeffrey Yeung</title>
+  <link rel="stylesheet" href="../style.css?v=4" />
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <h1 class="logo">Jeffrey Yeung</h1>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <!--<li><a href="../index.html#docs">Documentation</a></li>-->
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="project-page">
+
+  <section class="project-hero">
+    <h1>Docker Infrastructure Project</h1>
+    <p>
+      Self-hosted infrastructure using Docker Compose, Nginx, Apache, MariaDB,
+      Grafana, Prometheus, and WireGuard VPN.
+    </p>
+  </section>
+
+  <section class="project-section">
+    <h2>Project Overview</h2>
+    <p>
+      This project demonstrates a containerized infrastructure environment designed
+      to host public web services while keeping administrative and monitoring tools
+      restricted behind VPN/IP-based access controls.
+    </p>
+  </section>
+
+  <section class="project-section">
+    <h2>Architecture Diagram</h2>
+    <pre class="diagram">
+Internet
+   |
+DNS (Bind 9)
+   |
+Nginx Reverse Proxy
+   |
++-------------------------+
+| Public Services         |
+| - Apache Resume Site    |
+| - Flask Tracker App     |
++-------------------------+
+   |
+Docker Network
+   |
+MariaDB
+
+WireGuard VPN
+   |
+Admin Access
+   |
++-------------------------+
+| Restricted Services     |
+| - Grafana               |
+| - Prometheus            |
+| - Admin Pages           |
++-------------------------+
+    </pre>
+  </section>
+
+
+  <section class="project-section">
+    <h2>Docker & Docker Compose Infrastructure</h2>
+
+    <p>
+        Installed Docker and Docker Compose on an Ubuntu VPS and created a
+        centralized infrastructure repository to manage application containers,
+        configuration files, SSL certificates, and persistent storage.
+    </p>
+
+    <ul>
+        <li>Installed Docker Engine and Docker Compose</li>
+        <li>Created custom Docker network for service communication</li>
+        <li>Configured Docker volumes for persistent storage</li>
+        <li>Implemented restart policies for service resiliency</li>
+        <li>Managed services using a centralized docker-compose.yml</li>
+    </ul>
+    
+    <div class="project-gallery">
+        <figure>
+	    <figcaption>Docker containers running through Docker Compose.</figcaption>
+            <img src="../images/docker-images/docker_ps.png"
+	         alt="Docker compose ps"
+		 class="clickable-image">
+        </figure>
+            
+	<figure>
+            <figcaption>Docker containers Networks.</figcaption>
+            <img src="../images/docker-images/docker_network.png" 
+	         alt="Docker containers running"
+		 class="clickable-image">
+            <img src="../images/docker-images/docker_network2.png" 
+	         alt="Docker containers running"
+		 class="clickable-image">
+        </figure>
+    </div>
+
+
+  </section> 
+
+  <section class="project-section">
+    <h2>Apache Resume Website & MariaDB</h2>
+
+    <p>
+        Deployed a PHP-based resume website within a Docker container and
+        connected it to a MariaDB database using Docker internal networking.
+    </p>
+
+    <ul>
+        <li>Configured Apache virtual hosts</li>
+        <li>Connected PHP application to MariaDB</li>
+        <li>Implemented database queries for dynamic content</li>
+        <li>Configured persistent database storage</li>
+        <li>Restricted database access to the Docker network</li>
+    </ul>
+
+    <div class="project-gallery">
+        <figure>
+            <figcaption>Mariadb Database</figcaption>
+		<img src="../images/docker-images/mariadb_databases.png"
+                     alt="Nginx configuration"
+                     class="clickable-image">
+        </figure>
+
+        <figure>
+            <figcaption>Mariadb Tables</figcaption>
+		<img src="../images/docker-images/mariadb_tables.png"
+                     alt="Nginx configuration"
+                     class="clickable-image">
+        </figure>
+
+    </div>
+
+    <div class="site-preview-grid">
+
+        <div class="site-preview-card">
+            
+            <div class="browser-bar">
+                https://resume.jefffolio.com
+            </div>
+
+            <img src="../images/sites/resume-site-preview.png"
+                 alt="Resume Site Preview">
+
+
+	    <h3>Resume Website</h3>
+
+            <div class="site-preview-content">
+
+                <a href="https://resume.jefffolio.com"
+                   target="_blank"
+                   rel="noopener"
+                   class="btn">
+                    Visit Site
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+  </section>
+
+  <section class="project-section">
+    <h2>Flask Calorie Lookup Application</h2>
+
+    <p>
+        Developed and deployed a Python Flask application that retrieves
+        nutritional information through API integrations and serves data
+        through a web interface.
+    </p>
+
+    <ul>
+        <li>Built custom Flask container</li>
+        <li>Configured internal Docker networking</li>
+        <li>Integrated third-party nutrition APIs</li>
+        <li>Implemented search and autocomplete functionality</li>
+        <li>Published application through Nginx reverse proxy</li>
+    </ul>
+
+    <div class="site-preview-grid">
+	    <div class="site-preview-card">
+                <h3>Calorie Tracker</h3>
+
+                <div class="browser-bar">
+		    https://tracker.jefffolio.com
+                </div>
+
+                <img src="../images/sites/tracker-site-preview.png"
+                     alt="Tracker App Preview">
+
+                <div class="site-preview-content">
+                    <a href="https://tracker.jefffolio.com"
+                       target="_blank"
+                       rel="noopener"
+                       class="btn">
+                       Visit Site
+                    </a>
+
+                </div>
+
+            </div>
+
+    </div>
+  </section>
+
+  <section class="project-section">
+    <h2>Nginx Reverse Proxy & SSL</h2>
+
+    <p>
+        Configured Nginx as the public-facing reverse proxy responsible for
+        HTTPS termination and routing requests to internal Docker services.
+    </p>
+
+    <ul>
+        <li>Configured virtual hosts for multiple subdomains</li>
+        <li>Implemented SSL/TLS encryption</li>
+        <li>Configured HTTP to HTTPS redirects</li>
+        <li>Created upstream definitions for Docker services</li>
+        <li>Managed public access to internal applications</li>
+    </ul>
+
+    <div class="project-gallery">
+	
+        <figure>
+            <figcaption>Nginx Upstream</figcaption>
+            <img src="../images/docker-images/nginx.png"
+                 alt="Nginx configuration"
+                 class="clickable-image">
+        </figure>
+
+        <figure>
+            <figcaption>HTTPS -> HTTPS Redirect</figcaption>
+            <img src="../images/docker-images/nginx3.png"
+                 alt="Nginx configuration"
+                 class="clickable-image">
+        </figure>
+
+        <figure>
+            <figcaption>HTTPS</figcaption>
+            <img src="../images/docker-images/nginx5.png"
+                 alt="Nginx configuration"
+                 class="clickable-image">
+        </figure>
+
+    </div>
+
+  </section>
+
+  <section class="project-section">
+    <h2>Monitoring & Administration Stack</h2>
+
+    <p>
+        Implemented monitoring, administration, and backup services to
+        provide visibility into system performance and improve operational
+        reliability.
+    </p>
+
+    <ul>
+        <li>Deployed Grafana for dashboard visualization</li>
+        <li>Configured Prometheus metric collection</li>
+        <li>Installed Node Exporter for system metrics</li>
+	<li>Developed an administrative portal for managing website content and database records</li>
+        <li>Restricted monitoring services and adminsitrative services through IP allowlists</li>
+        <li>Implemented Acronis backup procedures and recovery procedures</li>
+        <li>Configured WireGuard VPN for secure administrative access</li>
+    </ul>
+
+    <div class="project-gallery">
+
+        <figure>
+            <figcaption>Grafana & Prometheus with Node Exporter Dashboard</figcaption>
+		<img src="../images/docker-images/grafana.png"
+                     alt="Grafana & Prometheus with Node Exporter"
+                     class="clickable-image">
+	        <a href="https://grafana.jefffolio.com"
+		   target="_blank"
+		   rel="noopener">
+		   https://grafana.jefffolio.com
+		</a>
+        </figure>
+
+	<figure>
+            <figcaption>WireGuard PVN Configuration</figcaption>
+ 		<img src="../images/docker-images/wireguard.png"
+                     alt="WireGuard Configuration"
+                     class="clickable-image">
+        </figure>
+
+	<figure>
+            <figcaption>Admin Section for Resume Site Database</figcaption>
+		<img src="../images/docker-images/admin-page.png"
+                     alt="Admin page for Resume"
+                     class="clickable-image">
+	        <a href="https://resume.jefffolio.com/admin/login.php"
+	           target="_blank"
+                   rel="noopener">
+		   https://resume.jefffolio.com/admin/login.php
+		</a>
+        </figure>
+
+   </div>
+  </section>
+
+  <section class="project-section">
+    <h2>Technologies Used</h2>
+    <ul class="tech-list">
+      <li>Ubuntu Server</li>
+      <li>Docker</li>
+      <li>Docker Compose</li>
+      <li>Nginx Reverse Proxy</li>
+      <li>Apache</li>
+      <li>MariaDB</li>
+      <li>Grafana</li>
+      <li>Prometheus</li>
+      <li>WireGuard VPN</li>
+    </ul>
+  </section>
+
+  <section class="project-section">
+    <h2>Security Design</h2>
+    <ul>
+      <li>Public traffic is routed through Nginx reverse proxy.</li>
+      <li>Grafana and Prometheus are restricted from public access.</li>
+      <li>Administrative access is handled through WireGuard VPN.</li>
+      <li>MariaDB is only reachable through the internal Docker network.</li>
+      <li>HTTPS is used for public-facing services.</li>
+    </ul>
+  </section>
+
+  <!---<section class="project-section">
+    <h2>Documentation</h2>
+    <p>
+      Detailed setup notes and configurations are separated into documentation pages.
+    </p>
+
+    <div class="doc-list">
+      <a href="../docs/docker-compose.html">Docker Compose Documentation</a>
+      <a href="../docs/nginx-apache.html">Nginx & Apache Documentation</a>
+      <a href="../docs/grafana-prometheus.html">Grafana & Prometheus Documentation</a>
+      <a href="../docs/wireguard.html">WireGuard VPN Documentation</a>
+    </div>
+  </section>-->
+
+  <!--<section class="project-section">
+    <h2>GitHub Repository</h2>
+    <p>
+      Configuration examples, infrastructure notes, and sanitized project files
+      are available on GitHub.
+    </p>
+    <a href="https://github.com/YOUR-GITHUB-USERNAME/YOUR-REPO" class="btn" target="_blank">
+      View GitHub Repository
+    </a>
+  </section>-->
+
+</main>
+
+<footer>
+  <p>&copy; 2026 Jeffrey Yeung. All rights reserved.</p>
+</footer>
+
+<div id="lightbox" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+
+    <img id="lightbox-image"
+         class="lightbox-content"
+         src=""
+         alt="Expanded Screenshot">
+</div>
+
+<script>
+
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-image");
+
+document.querySelectorAll(".clickable-image").forEach(img => {
+
+    img.addEventListener("click", function () {
+
+        lightbox.style.display = "block";
+        lightboxImg.src = this.src;
+
+    });
+
+});
+
+document.querySelector(".lightbox-close")
+    .addEventListener("click", function () {
+
+        lightbox.style.display = "none";
+
+});
+
+lightbox.addEventListener("click", function(e) {
+
+    if (e.target === lightbox) {
+
+        lightbox.style.display = "none";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proxmox Virtualization Lab | Jeffrey Yeung</title>
+  <link rel="stylesheet" href="../style.css?v=4" />
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <h1 class="logo">Jeffrey Yeung</h1>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="project-page">
+
+  <section class="project-hero">
+    <h1>Proxmox Virtualization Lab</h1>
+    <p>
+      Home lab virtualization environment using Proxmox VE to host Windows Server,
+      Windows client, and Linux virtual machines for infrastructure testing.
+    </p>
+  </section>
+
+  <section class="project-section">
+    <h2>Project Overview</h2>
+    <p>
+      This project demonstrates a self-hosted virtualization lab designed to practice
+      system administration, Windows Server management, Active Directory testing,
+      Linux administration, networking, and VM resource management.
+    </p>
+  </section>
+
+  <section class="project-section">
+    <h2>Architecture Diagram</h2>
+    <pre class="diagram">
+Physical Proxmox Host
+   |
+   |-- Windows Server 2022 VM
+   |     |-- Active Directory
+   |     |-- DNS
+   |
+   |-- Windows 11 Client VM
+   |     |-- Domain Join Testing
+   |     |-- User Authentication Testing
+   |
+   |-- Ubuntu Server VM
+         |-- Linux Administration
+         |-- Service Testing
+
+Network:
+LAN Gateway
+   |
+Proxmox vmbr0 Bridge
+   |
+Virtual Machines
+    </pre>
+  </section>
+
+  <section class="project-section">
+    <h2>Host System</h2>
+       <ul>
+          <li>Installed Proxmox VE on dedicated hardware</li>
+          <li>Assigned a static management IP address for Proxmox web access</li>
+          <li>Created and managed virtual machines through the Proxmox web interface</li>
+          <li>Allocated CPU, memory, and storage resources for each virtual machine</li>
+          <li>Used Proxmox to monitor VM status, uptime, and resource usage</li>
+       </ul>
+
+    <div class="project-gallery">
+      <figure>
+        <figcaption>Proxmox dashboard showing host resource usage.</figcaption>
+        <img  src="../images/proxmox/proxmox_monitor.png"
+              alt="Proxmox dashboard"
+              class="clickable-image">
+        <img  src="../images/proxmox/resource_monitor.png"
+              alt="Proxmox dashboard"
+              class="clickable-image">
+        <img  src="../images/proxmox/resource_monitor2.png"
+              alt="Proxmox dashboard"
+              class="clickable-image">
+      </figure>
+
+      <figure>
+        <figcaption>Proxmox node summary and hardware utilization.</figcaption>
+        <img src="../images/proxmox/vm_resources.png"
+             alt="Proxmox node summary"
+             class="clickable-image">
+      </figure>
+    </div>
+  </section>
+
+  <section class="project-section">
+    <h2>Virtual Machine Environment</h2>
+    <p>
+      Multiple virtual machines were created to simulate a small business lab
+      environment for server administration and endpoint testing.
+    </p>
+
+    <ul>
+      <li>Deployed Windows Server 2022 virtual machine</li>
+      <li>Deployed Windows 11 client virtual machine</li>
+      <li>Deployed Ubuntu Server virtual machine</li>
+      <li>Configured VM storage, CPU cores, RAM, and network adapters</li>
+      <li>Used VMs to test domain services, Linux services, and network connectivity</li>
+    </ul>
+
+    <div class="project-gallery">
+      <figure>
+        <figcaption>Virtual machines created inside Proxmox VE.</figcaption>
+        <img src="../images/proxmox/vm.png"
+             alt="Proxmox VM list"
+             class="clickable-image">
+      </figure>
+
+      <figure>
+        <figcaption>VM hardware configuration example.</figcaption>
+        <img src="../images/proxmox/vm_resources.png"
+             alt="Proxmox VM hardware settings"
+             class="clickable-image">
+      </figure>
+    </div>
+  </section>
+
+  <section class="project-section">
+      <h2>Network Connectivity</h2>
+         <p>
+    The lab uses the default Proxmox virtual networking configuration to provide
+    network access to the virtual machines. Proxmox was assigned a static
+    management IP address, and VM connectivity was validated between the Windows
+    Server domain controller and Windows client machine.
+        </p>
+
+        <ul>
+          <li>Assigned Proxmox a static IP address for management access</li>
+          <li>Used default Proxmox VM network settings for initial lab connectivity</li>
+          <li>Validated communication between the domain controller and Windows client VM</li>
+          <li>Confirmed Windows client connectivity to domain services</li>
+          <li>Troubleshot DNS and domain join connectivity during lab setup</li>
+        </ul>
+
+    <div class="project-gallery">
+      <figure>
+        <figcaption>Proxmox network bridge configuration.</figcaption>
+        <img src="../images/proxmox/proxmox-network.png"
+             alt="Proxmox network configuration"
+             class="clickable-image">
+      </figure>
+    </div>
+  </section>
+
+  <section class="project-section">
+    <h2>Windows Server & Active Directory Testing</h2>
+    <p>
+      The Proxmox lab was used to host Windows Server and Windows client systems
+      for Active Directory, DNS, authentication, and domain-join testing.
+    </p>
+
+    <ul>
+      <li>Hosted Windows Server 2022 for domain services testing</li>
+      <li>Connected Windows 11 client VM to the lab domain</li>
+      <li>Tested DNS resolution and domain controller discovery</li>
+      <li>Validated domain authentication using lab user accounts</li>
+      <li>Troubleshot client connectivity and domain join issues</li>
+    </ul>
+
+    <div class="project-gallery">
+      <figure>
+        <figcaption>Windows Server VM running in Proxmox.</figcaption>
+        <img src="../images/proxmox/windows-server-vm.png"
+             alt="Windows Server VM in Proxmox"
+             class="clickable-image">
+      </figure>
+
+      <figure>
+        <figcaption>Windows client VM connected to the lab domain.</figcaption>
+        <img src="../images/proxmox/windows-client-domain.png"
+             alt="Windows client domain join"
+             class="clickable-image">
+      </figure>
+    </div>
+  </section>
+
+  <section class="project-section">
+    <h2>Technologies Used</h2>
+    <ul class="tech-list">
+      <li>Proxmox VE</li>
+      <li>Windows Server 2022</li>
+      <li>Windows 11</li>
+      <li>Ubuntu Server</li>
+      <li>Active Directory</li>
+      <li>DNS</li>
+      <li>Linux Bridge Networking</li>
+      <li>Virtual Machines</li>
+      <li>System Administration</li>
+    </ul>
+  </section>
+
+  <section class="project-section">
+    <h2>Security & Administration</h2>
+    <ul>
+      <li>Kept Proxmox management access limited to the internal network</li>
+      <li>Used separate virtual machines for server, client, and Linux testing</li>
+      <li>Practiced least-privilege access with domain user accounts</li>
+      <li>Maintained separation between lab workloads and public-facing services</li>
+      <li>Used screenshots instead of exposing administrative interfaces publicly</li>
+    </ul>
+  </section>
+
+  <section class="project-section">
+    <h2>Lessons Learned</h2>
+    <ul>
+      <li>Configured and managed Type 1 hypervisor infrastructure</li>
+      <li>Troubleshot bridge networking and VM connectivity</li>
+      <li>Allocated CPU, memory, and storage resources across multiple VMs</li>
+      <li>Tested Windows domain services in an isolated lab environment</li>
+      <li>Improved understanding of virtualization used in system administration roles</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 Jeffrey Yeung. All rights reserved.</p>
+</footer>
+
+<div id="lightbox" class="lightbox">
+  <span class="lightbox-close">&times;</span>
+
+  <img id="lightbox-image"
+       class="lightbox-content"
+       src=""
+       alt="Expanded Screenshot">
+</div>
+
+<script>
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-image");
+
+document.querySelectorAll(".clickable-image").forEach(img => {
+  img.addEventListener("click", function () {
+    lightbox.style.display = "block";
+    lightboxImg.src = this.src;
+  });
+});
+
+document.querySelector(".lightbox-close").addEventListener("click", function () {
+  lightbox.style.display = "none";
+});
+
+lightbox.addEventListener("click", function(e) {
+  if (e.target === lightbox) {
+    lightbox.style.display = "none";
+  }
+});
+</script>
+
+</body>
+</html>

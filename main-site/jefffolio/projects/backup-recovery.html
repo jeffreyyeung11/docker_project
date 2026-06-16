@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Backup & Recovery Lab | Jeffrey Yeung</title>
+  <link rel="stylesheet" href="../style.css?v=2" />
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <h1 class="logo">Jeffrey Yeung</h1>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+     <!-- <li><a href="../index.html#docs">Documentation</a></li>-->
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="project-page">
+
+  <section class="project-hero">
+    <h1>Backup & Recovery Lab</h1>
+    <p>
+    Backup and disaster recovery environment designed to protect critical
+    infrastructure services, application data, and configuration files through
+    automated backups and restoration testing.
+    </p>
+  </section>
+
+  <section class="project-section">
+    <h2>Project Overview</h2>
+
+    <p>
+    This project demonstrates backup and disaster recovery procedures for Linux
+    servers and containerized applications. The lab focuses on protecting
+    application data, configuration files, and system services while validating
+    recovery processes to minimize downtime during failures.
+    </p>
+  </section>
+
+      <pre class="diagram">
+Production Services
+      |
+      +-- Docker Containers
+      |
+      +-- MariaDB Data
+      |
+      +-- Application Files
+      |
+      +-- Configuration Files
+      |
+      v
+Acronis Backup
+      |
+      v
+Backup Storage
+      |
+      v
+Recovery Testing
+    </pre>
+  </section>
+
+  <section class="project-section">
+    <h2>Backup Infrastructure</h2>
+
+    <p>
+    Configured centralized backup policies to protect application data,
+    databases, and infrastructure configurations.
+    </p>
+
+    <ul>
+      <li>Installed and configured Acronis Backup</li>
+      <li>Created automated backup schedules</li>
+      <li>Configured backup retention policies</li>
+      <li>Monitored backup job status</li>
+      <li>Verified backup completion and integrity</li>
+    </ul>
+
+    <div class="project-gallery">
+
+        <figure>
+	        <figcaption>Acronis Dashboard</figcaption>
+          <img  src="../images/docker-images/"
+	              alt="Backup Config"
+		            class="clickable-image">
+          </figure>
+            
+    </div>
+
+  </section>
+
+  <section class="project-section">
+    <h2>Recovery Testing</h2>
+
+    <p>
+    Conducted restoration testing to validate backup effectiveness and ensure
+    business continuity during simulated failures.
+    </p>
+
+    <ul>
+      <li>Performed file restoration tests</li>
+      <li>Validated Docker configuration recovery</li>
+      <li>Verified database restoration procedures</li>
+      <li>Tested application functionality after recovery</li>
+      <li>Documented recovery procedures</li>
+    </ul>
+
+    <div class="project-gallery">
+
+      <figure>
+        <figcaption>Recovery confirmation</figcaption>
+        <img  src="../images/docker-images/"
+              alt="Recovery Test"
+              class="clickable-image">
+        </figure>
+            
+    </div>
+  </section>
+
+  <section class="project-section">
+    <h2>Security Design</h2>
+    <ul>
+      <li>Public traffic is routed through Nginx reverse proxy.</li>
+      <li>Grafana and Prometheus are restricted from public access.</li>
+      <li>Administrative access is handled through WireGuard VPN.</li>
+      <li>MariaDB is only reachable through the internal Docker network.</li>
+      <li>HTTPS is used for public-facing services.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 Jeffrey Yeung. All rights reserved.</p>
+</footer>
+
+<div id="lightbox" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+
+    <img id="lightbox-image"
+         class="lightbox-content"
+         src=""
+         alt="Expanded Screenshot">
+</div>
+
+<script>
+
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-image");
+
+document.querySelectorAll(".clickable-image").forEach(img => {
+
+    img.addEventListener("click", function () {
+
+        lightbox.style.display = "block";
+        lightboxImg.src = this.src;
+
+    });
+
+});
+
+document.querySelector(".lightbox-close")
+    .addEventListener("click", function () {
+
+        lightbox.style.display = "none";
+
+});
+
+lightbox.addEventListener("click", function(e) {
+
+    if (e.target === lightbox) {
+
+        lightbox.style.display = "none";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

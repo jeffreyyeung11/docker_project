@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Active Directory Lab | Jeffrey Yeung</title>
+  <link rel="stylesheet" href="../style.css?v=2" />
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <h1 class="logo">Jeffrey Yeung</h1>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="project-page">
+
+  <section class="project-hero">
+    <h1>Windows Active Directory Lab</h1>
+    <p>
+    Enterprise-style Active Directory environment built using Windows Server,
+    DNS, Group Policy, and centralized user management.
+    </p>
+  </section>
+
+  <section class="project-section">
+    <h2>Project Overview</h2>
+
+    <p>
+    This project demonstrates the deployment and administration of a Windows
+    Server Active Directory environment designed to simulate a small business
+    network. The lab includes domain services, DNS, organizational units,
+    user management, and Group Policy administration.
+    </p>
+  </section>
+
+  <section class="project-section">
+    <h2>Lab Architecture</h2>
+
+    <pre class="diagram">
+Windows 11 Client
+        |
+        |
+   Domain Join
+        |
+        v
++-------------------+
+| Windows Server    |
+| Domain Controller |
++-------------------+
+        |
+        +---- Active Directory
+        |
+        +---- DNS
+        |
+        +---- Group Policy
+    </pre>
+  </section>
+
+  <section class="project-section">
+    <h2>Windows Server Deployment</h2>
+
+    <p>
+      Installed Windows Server and configured static networking to provide
+    centralized identity and infrastructure services.
+    </p>
+
+    <ul>
+      <li>Setup Windows Server VPS</li>
+      <li>Configured static IPv4 addressing</li>
+      <li>Configured server hostname</li>
+      <li>Applied Windows Updates</li>
+      <li>Verified network connectivity</li>
+    </ul>
+
+    <div class="project-gallery">
+
+        <figure>
+	        <figcaption>Windows Server Deployment</figcaption>
+          <img  src="../images/active-directory/"
+	              alt="Windows"
+		            class="clickable-image">
+          </figure>
+            
+    </div>
+  </section>
+
+  <section class="project-section">
+    <h2>Active Directory Configuration</h2>
+
+    <p>
+      Promoted the server to a Domain Controller and configured Active Directory
+    Domain Services.
+    </p>
+
+    <ul>
+      <li>Installed Active Directory Domain Services role</li>
+      <li>Created a new forest</li>
+      <li>Configured domain naming structure</li>
+      <li>Verified domain controller functionality</li>
+      <li>Validated replication services</li>
+    </ul>
+
+    <div class="project-gallery">
+
+        <figure>
+	        <figcaption>Active Directory</figcaption>
+          <img  src="../images/active-directory/"
+	              alt="AD Config"
+		            class="clickable-image">
+          </figure>
+            
+    </div>
+  </section>
+
+  <section class="project-section">
+    <h2>User & Group Management</h2>
+
+    <p>
+      Created users, security groups, and organizational units to simulate a
+    business environment.
+    </p>
+
+    <ul>
+      <li>Created Organizational Units (OUs)</li>
+      <li>Created user accounts</li>
+      <li>Configured security groups</li>
+      <li>Assigned group memberships</li>
+      <li>Implemented role-based access management</li>
+    </ul>
+
+    <div class="project-gallery">
+
+        <figure>
+	        <figcaption>Users Group and OU</figcaption>
+          <img  src="../images/active-directory/AD_users.png"
+	              alt="User/Group Management"
+		            class="clickable-image">
+          </figure>
+
+        <figure>
+	        <figcaption>Users Group and OU</figcaption>
+          <img  src="../images/active-directory/AD_groups.png"
+	              alt="User/Group Management"
+		            class="clickable-image">
+        </figure>
+            
+    </div>
+  </section>
+
+  <section class="project-section">
+    <h2>Group Policy Configuration</h2>
+
+    <p>
+      Implemented Group Policy Objects to standardize workstation configuration
+    and security settings.
+    </p>
+
+    <ul>
+      <li>Password complexity policies</li>
+      <li>Password expiration policies</li>
+      <li>Desktop restrictions</li>
+      <li>Control Panel restrictions</li>
+      <li>Security hardening settings</li>
+    </ul>
+
+    <div class="project-gallery">
+
+        <figure>
+	        <figcaption>Group Policy Configurations</figcaption>
+          <img  src="../images/active-directory/group_policy.png"
+	              alt="Group Policy Config"
+		            class="clickable-image">
+        </figure>
+            
+        <figure>
+	        <figcaption>Group Policy Configurations</figcaption>
+          <img  src="../images/active-directory/group_policy2.png"
+	              alt="Group Policy Config"
+		            class="clickable-image">
+        </figure>
+
+    </div>
+  </section>   
+
+  <section class="project-section">
+    <h2>DNS Services</h2>
+
+    <p>
+    Configured and managed DNS services required for Active Directory authentication and domain functionality.
+    </p>
+
+    <ul>
+      <li>Installed DNS Server role during Active Directory deployment</li>
+      <li>Configured DNS zones for Active Directory</li>
+      <li>Verified domain name resolution</li>
+      <li>Troubleshot DNS-related authentication and domain join issues</li>
+      <li>Validated client communication with the domain controller</li>
+    </ul>
+
+    <div class="project-gallery">
+
+        <figure>
+	        <figcaption>Windows DNS</figcaption>
+          <img  src="../images/active-directory/DNS.png"
+	              alt="Windows DNS"
+		            class="clickable-image">
+        </figure>
+            
+    </div>
+  </section>
+
+  <section class="project-section">
+    <h2>Security Configuration</h2>
+
+    <ul>
+      <li>Enforced password policies</li>
+      <li>Restricted administrative privileges</li>
+      <li>Applied Group Policy security settings</li>
+      <li>Configured Windows Firewall rules</li>
+      <li>Implemented least-privilege access</li>
+    </ul>
+  </section>
+
+  <section class="project-section">
+    <h2>Skills Demonstrated</h2>
+
+    <ul>
+      <li>Windows Server Administration</li>
+      <li>Active Directory Administration</li>
+      <li>DNS Management</li>
+      <li>Group Policy Administration</li>
+      <li>User & Access Management</li>
+      <li>Network Troubleshooting</li>
+      <li>Security Policy Implementation</li>
+    </ul>
+  </section>
+
+  <section class="project-section">
+    <h2>Security Design</h2>
+    <ul>
+      <li>Public traffic is routed through Nginx reverse proxy.</li>
+      <li>Grafana and Prometheus are restricted from public access.</li>
+      <li>Administrative access is handled through WireGuard VPN.</li>
+      <li>MariaDB is only reachable through the internal Docker network.</li>
+      <li>HTTPS is used for public-facing services.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 Jeffrey Yeung. All rights reserved.</p>
+</footer>
+
+<div id="lightbox" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+
+    <img id="lightbox-image"
+         class="lightbox-content"
+         src=""
+         alt="Expanded Screenshot">
+</div>
+
+<script>
+
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-image");
+
+document.querySelectorAll(".clickable-image").forEach(img => {
+
+    img.addEventListener("click", function () {
+
+        lightbox.style.display = "block";
+        lightboxImg.src = this.src;
+
+    });
+
+});
+
+document.querySelector(".lightbox-close")
+    .addEventListener("click", function () {
+
+        lightbox.style.display = "none";
+
+});
+
+lightbox.addEventListener("click", function(e) {
+
+    if (e.target === lightbox) {
+
+        lightbox.style.display = "none";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
