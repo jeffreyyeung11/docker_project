@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify, render_template
-import requests
+import requests, os
 
 app = Flask(__name__)
 
-API_KEY = "CfzIbeOcfGCu4FhMhBtjYdJ0rJPCIgOmWhwLLAh7"
+API_KEY = os.getenv("USDA_API_KEY")
 
 @app.route("/api/search")
 def search_food():
