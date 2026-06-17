@@ -72,7 +72,7 @@ Windows 11 Client
     </p>
 
     <ul>
-      <li>Setup Windows Server VPS</li>
+      <li>Installed Windows Server on VM</li>
       <li>Configured static IPv4 addressing</li>
       <li>Configured server hostname</li>
       <li>Applied Windows Updates</li>
@@ -101,7 +101,6 @@ Windows 11 Client
 
     <ul>
       <li>Installed Active Directory Domain Services role</li>
-      <li>Created a new forest</li>
       <li>Configured domain naming structure</li>
       <li>Verified domain controller functionality</li>
       <li>Validated replication services</li>
@@ -223,8 +222,6 @@ Windows 11 Client
       <li>Enforced password policies</li>
       <li>Restricted administrative privileges</li>
       <li>Applied Group Policy security settings</li>
-      <li>Configured Windows Firewall rules</li>
-      <li>Implemented least-privilege access</li>
     </ul>
   </section>
 
@@ -239,18 +236,6 @@ Windows 11 Client
       <li>User & Access Management</li>
       <li>Network Troubleshooting</li>
       <li>Security Policy Implementation</li>
-    </ul>
-  </section>
-
-  <section class="project-section">
-    <h2>Security Design</h2>
-    
-    <ul>
-      <li>Public traffic is routed through Nginx reverse proxy.</li>
-      <li>Grafana and Prometheus are restricted from public access.</li>
-      <li>Administrative access is handled through WireGuard VPN.</li>
-      <li>MariaDB is only reachable through the internal Docker network.</li>
-      <li>HTTPS is used for public-facing services.</li>
     </ul>
   </section>
 
