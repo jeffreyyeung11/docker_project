@@ -88,9 +88,16 @@ Recovery Testing
         <figure>
 	        <figcaption>Acronis Dashboard</figcaption>
           <img  src="../images/backups/backup-dashboard.png"
-	              alt="Backup Config"
+	              alt="Acronis Dashboard"
 		            class="clickable-image">
-          </figure>
+        </figure>
+
+        <figure>
+	        <figcaption>Automated Backup Schedule</figcaption>
+          <img  src="../images/backups/backup-plan.png"
+	              alt="Backup Plan Config"
+		            class="clickable-image">
+        </figure>
             
     </div>
 
@@ -122,17 +129,6 @@ Recovery Testing
         </figure>
             
     </div>
-  </section>
-
-  <section class="project-section">
-    <h2>Security Design</h2>
-    <ul>
-      <li>Public traffic is routed through Nginx reverse proxy.</li>
-      <li>Grafana and Prometheus are restricted from public access.</li>
-      <li>Administrative access is handled through WireGuard VPN.</li>
-      <li>MariaDB is only reachable through the internal Docker network.</li>
-      <li>HTTPS is used for public-facing services.</li>
-    </ul>
   </section>
 
 </main>
