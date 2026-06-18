@@ -42,25 +42,35 @@
     <h2>Architecture Diagram</h2>
     <pre class="diagram">
 Physical Proxmox Host
-   |
-   |-- Windows Server 2022 VM
-   |     |-- Active Directory
-   |     |-- DNS
-   |
-   |-- Windows 11 Client VM
-   |     |-- Domain Join Testing
-   |     |-- User Authentication Testing
-   |
-   |-- Ubuntu Server VM
-         |-- Linux Administration
-         |-- Service Testing
+    |
+    |-- OPNsense Firewall/Router VM
+    |
+    |-- Windows Server 2022 VM
+    |     |-- Active Directory
+    |     |-- DNS
+    |
+    |-- Windows 11 Client VM
+    |     |-- Domain Join Testing
+    |     |-- User Authentication Testing
+    |
+    |-- Ubuntu Server VM
+          |-- Linux Administration
+          |-- Service Testing
 
 Network:
 LAN Gateway
    |
-Proxmox vmbr0 Bridge
+Proxmox Host
    |
-Virtual Machines
+vmbr0 Bridge WAN
+   |
+OPNsense Firewall/Router
+   |
+vmbr1 Bridge LAN
+   |
+Windows Server 2022
+Windows 11
+Ubuntu Server
     </pre>
   </section>
 
@@ -108,6 +118,7 @@ Virtual Machines
       <li>Deployed Windows Server 2022 virtual machine</li>
       <li>Deployed Windows 11 client virtual machine</li>
       <li>Deployed Ubuntu Server virtual machine</li>
+      <li>Deployed OPNsense virtual machine</li>
       <li>Configured VM storage, CPU cores, RAM, and network adapters</li>
       <li>Used VMs to test domain services, Linux services, and network connectivity</li>
     </ul>
@@ -129,32 +140,46 @@ Virtual Machines
     </div>
   </section>
 
-  <section class="project-section">
-      <h2>Network Connectivity</h2>
-         <p>
-    The lab uses the default Proxmox virtual networking configuration to provide
-    network access to the virtual machines. Proxmox was assigned a static
-    management IP address, and VM connectivity was validated between the Windows
-    Server domain controller and Windows client machine.
-        </p>
+ <section class="project-section">
+  <h2>Virtualized Network Infrastructure</h2>
 
-        <ul>
-          <li>Assigned Proxmox a static IP address for management access</li>
-          <li>Used default Proxmox VM network settings for initial lab connectivity</li>
-          <li>Validated communication between the domain controller and Windows client VM</li>
-          <li>Confirmed Windows client connectivity to domain services</li>
-          <li>Troubleshot DNS and domain join connectivity during lab setup</li>
-        </ul>
+  <p>
+    The lab uses Proxmox virtual networking to provide connectivity between
+    Windows Server, Windows 11, Ubuntu Server, and OPNsense virtual machines.
+    Proxmox was assigned a static management IP address, and connectivity was
+    validated between infrastructure components to support Active Directory,
+    DNS, authentication, and administrative services.
+  </p>
 
-    <div class="project-gallery">
-      <figure>
-        <figcaption>Proxmox network bridge configuration.</figcaption>
-        <img src="../images/proxmox/proxmox-network.png"
-             alt="Proxmox network configuration"
-             class="clickable-image">
-      </figure>
-    </div>
-  </section>
+  <ul>
+    <li>Assigned Proxmox a static IP address for management access</li>
+    <li>Configured virtual machine networking within Proxmox</li>
+    <li>Validated communication between the domain controller and Windows client VM</li>
+    <li>Confirmed Windows client connectivity to Active Directory services</li>
+    <li>Troubleshot DNS and domain join connectivity during lab deployment</li>
+    <li>Deployed an OPNsense firewall VM for network security and traffic management</li>
+    <li>Created and tested firewall rules to control communication between lab systems</li>
+  </ul>
+
+  <div class="project-gallery">
+    <figure>
+      <figcaption>OPNsense VM</figcaption>
+      <img src="../images/proxmox/opnsense_vm.png"
+           alt="OPNsense VM"
+           class="clickable-image">
+      <img src="../images/proxmox/opnsense.png"
+           alt="OPNsense"
+           class="clickable-image">
+    </figure>
+
+    <figure>
+      <figcaption>Ubuntu Network</figcaption>
+      <img src="../images/proxmox/ubuntu_opn.png"
+           alt="Ubuntu Network"
+           class="clickable-image">
+    </figure>
+  </div>
+</section>
 
   <section class="project-section">
     <h2>Windows Server & Active Directory Testing</h2>
@@ -200,6 +225,7 @@ Virtual Machines
       <li>Linux Bridge Networking</li>
       <li>Virtual Machines</li>
       <li>System Administration</li>
+      <li>OPNsense</li>
     </ul>
   </section>
 
